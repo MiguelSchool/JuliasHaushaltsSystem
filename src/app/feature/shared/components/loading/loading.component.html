@@ -1,5 +1,7 @@
-<div class="animation-container">
-  <img class="men"  [@fadeInOut]="isGirlShow ? 'disabled':'show'" alt="loading..." src="./assets/scss/img/man-up.png">
-  <img class="girl" [@fadeInOut]="isGirlShow ? 'show':'disabled'" alt="loading..." src="./assets/scss/img/girl-up.png">
-  <span class="row text">Bitte warten...</span>
+<div class="container">
+  <div class="animation-container">
+    <img class="men"  [@fadeInOut]="isGirlShow ? 'disabled':'show'" alt="loading..." src="./assets/scss/img/man-up.png">
+    <img class="girl" [@fadeInOut]="isGirlShow ? 'show':'disabled'" alt="loading..." src="./assets/scss/img/girl-up.png">
+    <div class="loading-text">Bitte warten...</div>
+  </div>
 </div>

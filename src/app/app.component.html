@@ -1,6 +1,6 @@
 <nav class="navigation" role="navigation">
-  <h2 [routerLink]="['/home']">HOME PLANNER</h2>
-  <ng-container *ngIf="loginState$ | async as loginstate" >
+  <div class="header-layout" [routerLink]="['/home']">EASY PLANNER</div>
+  <ng-container *ngIf="loginState$ | async as loginstate">
     <ul *ngIf="loginstate.isLoggedIn" class="ul-list">
       <li class="item" (click)="isImpressOpen = !isImpressOpen">
         <i class="tim-icons icon-atom"></i>
@@ -26,10 +26,10 @@
           </a>
         </div>
       </li>
-    </ul >
+    </ul>
     <div class="btn-auth-container" *ngIf="!loginstate.isLoggedIn">
-     <div class="btn-button" [routerLink]="['./auth/register']">REGISTRIEREN</div>
-     <div class="btn-button" [routerLink]="['./auth/login']">LOGIN</div>
+      <div class="btn-button btn-register" [routerLink]="['./auth/register']">REGISTRIEREN</div>
+      <div class="btn-button left" [routerLink]="['./auth/login']">LOGIN</div>
     </div>
   </ng-container>
 </nav>
@@ -37,6 +37,7 @@
   <div class="impress-container" *ngIf="isImpressOpen">
     <app-impresum (closeModal)="isImpressOpen=$event"></app-impresum>
   </div>
+  <app-loading *ngIf="isLoading$ | async"></app-loading>
   <router-outlet></router-outlet>
 </div>
 <ng-container *ngIf="toastMessage$ | async as toasmessage">
@@ -44,3 +45,4 @@
     {{toasmessage.message}}
   </alert>
 </ng-container>
+

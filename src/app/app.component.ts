@@ -29,6 +29,8 @@ export class AppComponent implements OnInit {
   isImpressOpen = false;
   loginState$: Observable<LoginState>;
   toastMessage$: Observable<ToastMessage> | undefined;
+  isLoading$: Observable<boolean> | undefined;
+
 
   constructor(
     private router: Router,
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading$ = this.loginStateCollectionService.loading$;
     this.toastMessage$ = this.toastMessageCollectionServiceService.entities$.pipe(
       map( toastMessages => toastMessages[ 0 ] )
     );
