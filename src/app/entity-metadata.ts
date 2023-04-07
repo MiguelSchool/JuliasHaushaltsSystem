@@ -1,6 +1,11 @@
 import { EntityMetadataMap, EntityDataModuleConfig } from '@ngrx/data';
 
-const entityMetadata: EntityMetadataMap = {};
+const entityMetadata: EntityMetadataMap = {
+  LoginState: {
+    selectId: model => model.id
+  },
+  ToastMessage: {}
+};
 
 const pluralNames = {  };
 

@@ -1,0 +1,23 @@
+$color : pink;
+$containerWitdh: 350px;
+$containerHeight: 450px;
+.container {
+  margin-top: 30%;
+  top: 30%;
+  max-width: $containerWitdh;
+  background-color: rgba(0, 86, 214, 0.33);
+  -webkit-backdrop-filter: blur(45px) brightness(100%);
+  backdrop-filter: blur(45px) brightness(100%);
+  padding-top: 20px;
+  border-radius: 8px;
+  height: $containerHeight;
+
+  .btn-container{
+    margin-top: 10px;
+    float: right;
+  }
+}
+
+.login {
+  margin-right: 103px;
+}
