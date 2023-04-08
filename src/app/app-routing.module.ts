@@ -1,6 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent }        from './feature/components/home/home.component';
+import { MobileMenueComponent } from './feature/shared/components/mobile-menue/mobile-menue.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
     path: 'social-group',
     loadChildren: () => import('./feature/components/social-group/social-group.module')
       .then( m => m.SocialGroupModule )
+  },
+  {
+    path: 'mobile-menue',
+    component: MobileMenueComponent
   }
 ];
 

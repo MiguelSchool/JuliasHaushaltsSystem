@@ -2,8 +2,8 @@ import { Injectable }         from '@angular/core';
 import { HttpClient }         from '@angular/common/http';
 import { RegisterUser }         from './model/RegisterUser';
 import { map, Observable, tap } from 'rxjs';
-import { RegistrationStatus }   from './model/RegisterStatus';
-import { LoginUser }  from './model/LoginUser';
+import { TokenState }           from './model/RegisterStatus';
+import { LoginUser }            from './model/LoginUser';
 import { LoginState } from './model/LoginState';
 
 type RefreshResponse = {
@@ -22,13 +22,12 @@ export class AuthService {
 
   constructor( private httpClient: HttpClient ) { }
 
-  register( registerUser: RegisterUser ): Observable<RegistrationStatus> {
-    console.log(registerUser)
-    return this.httpClient.post<RegistrationStatus>( `${ this.baseUrl }/register`, registerUser, { withCredentials: true } )
+  register( registerUser: RegisterUser ): Observable<TokenState> {
+      return this.httpClient.post<TokenState>( `${ this.baseUrl }/register`, registerUser, { withCredentials: true } )
   }
 
-  login( loginUser: LoginUser ): Observable<LoginState> {
-    return this.httpClient.post<LoginState>( `${ this.baseUrl }/login`, loginUser, { withCredentials: true } );
+  login( loginUser: LoginUser ): Observable<TokenState> {
+    return this.httpClient.post<TokenState>( `${ this.baseUrl }/login`, loginUser, { withCredentials: true } );
   }
 
   refreshToken(oldToken: string): Observable<string> {

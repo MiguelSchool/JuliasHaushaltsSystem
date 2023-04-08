@@ -11,5 +11,4 @@ export class LoginStatusDataService extends DefaultDataService<LoginState> {
   constructor( private httpClient: HttpClient, httpUrlGenerator: HttpUrlGenerator,private logger: Logger ) {
     super( 'LoginState', httpClient, httpUrlGenerator );
   }
-
 }

@@ -14,5 +14,4 @@ export class LoginStateCollectionService extends EntityCollectionServiceBase<Log
       super.addOneToCache(entity);
       localStorage.setItem('loginState', JSON.stringify(entity));
   }
-
 }

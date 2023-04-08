@@ -1,7 +1,7 @@
 <nav class="navigation" role="navigation">
   <div class="header-layout" [routerLink]="['/home']">EASY PLANNER</div>
   <ng-container *ngIf="loginState$ | async as loginstate">
-    <ul *ngIf="loginstate.isLoggedIn" class="ul-list">
+    <ul *ngIf="loginstate.isLoggedIn && (this.showContainer$ | async)" class="ul-list">
       <li class="item" (click)="isImpressOpen = !isImpressOpen">
         <i class="tim-icons icon-atom"></i>
       </li>
@@ -33,7 +33,7 @@
     </div>
   </ng-container>
 </nav>
-<div class="container">
+<div class="container width-container">
   <div class="impress-container" *ngIf="isImpressOpen">
     <app-impresum (closeModal)="isImpressOpen=$event"></app-impresum>
   </div>

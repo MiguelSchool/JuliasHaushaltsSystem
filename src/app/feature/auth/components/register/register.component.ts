@@ -7,9 +7,9 @@ import {
   ToastMessageCollectionServiceService
 }                                                          from '../../../shared/service/toast-message-collection-service.service';
 import { Subject, takeUntil }                              from 'rxjs';
-import { LoginStateCollectionService }                     from '../../share/store/login-state-collection.service';
-import { RegistrationStatus }                              from '../../share/model/RegisterStatus';
-import { Router }                                          from '@angular/router';
+import { LoginStateCollectionService } from '../../share/store/login-state-collection.service';
+import { TokenState }                  from '../../share/model/RegisterStatus';
+import { Router }                      from '@angular/router';
 // @ts-ignore
 import { v4 as uuid }                                      from 'uuid';
 
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnDestroy {
   onRegister(): void {
     const registerUser: RegisterUser = this.formGroup.value;
     this.authService.register( registerUser ).pipe( takeUntil( this.unsubscribe$ ) )
-      .subscribe( ( registerStatus: RegistrationStatus ) => {
+      .subscribe( ( registerStatus: TokenState ) => {
           this.loginStateCollectionService.clearCache();
           this.loginStateCollectionService.addOneToCache( {
             isLoggedIn: true,

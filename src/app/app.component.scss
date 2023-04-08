@@ -16,10 +16,15 @@ $font-color: #ff748c;
     grid-template-columns: 1fr 30%;
   }
 
+  @media only screen and (max-width: 600px) {
+    width:500px;
+  }
+
   .header-layout {
     @media only screen and (max-width: 600px) {
       display: flex;
       justify-content: center;
+      width: 400px;
     }
     font-weight: bolder;
     font-size: 27px;
@@ -108,7 +113,8 @@ $font-color: #ff748c;
     }
     .btn-register {
       @media only screen and (max-width: 600px) {
-       margin-left: -12px;
+        margin-left: 35px;
+        padding-left: 57px;
       }
     }
   }
@@ -125,4 +131,24 @@ $font-color: #ff748c;
   width: 300px; /* Need a specific value to work */
   border: 5px solid pink;
 
+}
+
+.footer-customized {
+  height: 26%;
+  bottom: 0;
+  opacity: .5;
+  background-color: black;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.width-container {
+  @media only screen and (max-width: 600px) {
+    width: 500px;
+    padding-left: 0;
+  }
 }

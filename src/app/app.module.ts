@@ -16,6 +16,8 @@ import { LoadingComponent }        from './feature/shared/components/loading/loa
 import { AlertModule }             from 'ngx-bootstrap/alert';
 import { AuthModule } from './feature/auth/auth.module';
 import { MatIconModule } from '@angular/material/icon';
+import { LayoutModule }            from '@angular/cdk/layout';
+import { MobileMenueComponent }    from './feature/shared/components/mobile-menue/mobile-menue.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     LoadingComponent,
     AuthModule,
-    AlertModule
+    AlertModule,
+    LayoutModule,
+    MobileMenueComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

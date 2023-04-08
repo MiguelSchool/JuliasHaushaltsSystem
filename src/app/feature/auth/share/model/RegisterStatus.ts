@@ -1,3 +1,3 @@
-export type RegistrationStatus = {
+export type TokenState = {
   token: string;
 }

@@ -2,6 +2,8 @@ $color : pink;
 $containerWitdh: 350px;
 $containerHeight: 300px;
 .container {
+  display: flex;
+  justify-content: center;
   margin-top: 30%;
   top: 30%;
   max-width: $containerWitdh;
