@@ -21,11 +21,9 @@ $containerHeight: 647px;
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  //width: 300px;
-  //margin-left: -45%;
-  //margin-right: auto;
 
   .btn-customized {
+    margin-top: 15px;
     width: 200px;
     height: 50px;
     outline: none;
@@ -74,5 +72,11 @@ $containerHeight: 647px;
     width: 100%;
     filter: drop-shadow(0 0 23px var(--animation-color));
     border: 3px solid var(--animation-color);
+  }
+  .impresum-mobile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:400px
   }
 }

@@ -1,5 +1,5 @@
-<div class="container">
-  <form *ngIf="formGroup" class="form-group" [formGroup]="formGroup">
+<div class="container container-sm container-md container-lg container-xl">
+  <form *ngIf="formGroup" class="form-group" [formGroup]="formGroup" (ngSubmit)="onLogin()">
     <div class="form-group">
       <label for="exampleInputEmail1">Emailadresse</label>
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
@@ -21,7 +21,7 @@
 
     <div class="btn-container">
       <button class="btn btn-primary register" [routerLink]="['/auth/register']">Registrieren</button>
-      <button type="submit" class="btn btn-primary" (click)="onLogin()">Login</button>
+      <button type="submit" class="btn btn-primary">Login</button>
     </div>
   </form>
 </div>

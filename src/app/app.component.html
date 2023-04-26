@@ -12,10 +12,10 @@
           <a class=" dropdown-item">
             Profil
           </a>
-          <a class=" dropdown-item" href="#">
+          <a class=" dropdown-item">
             Meine Einkäufe
           </a>
-          <a class=" dropdown-item" href="#">
+          <a class=" dropdown-item">
             Märkte
           </a>
           <a class=" dropdown-item" [routerLink]="['social-group']">
@@ -33,7 +33,7 @@
     </div>
   </ng-container>
 </nav>
-<div class="container width-container">
+<div class="container container-sm container-md container-lg container-xl container-xxl width-container">
   <div class="impress-container" *ngIf="isImpressOpen">
     <app-impresum (closeModal)="isImpressOpen=$event"></app-impresum>
   </div>

@@ -1,10 +1,10 @@
 <div class="mobile-container"></div>
 <div class="btn-container">
-  <button data-text="Awesome" class="button btn-customized">
+  <button data-text="Awesome" class="button btn-customized" [routerLink]="'/home'">
     <span class="actual-text">&nbsp;HOME&nbsp;</span>
     <span class="hover-text" aria-hidden="true">&nbsp;HOME&nbsp;</span>
   </button>
-  <button data-text="Awesome" class="button btn-customized">
+  <button data-text="Awesome" class="button btn-customized" [routerLink]="'/profile'">
     <span class="actual-text">&nbsp;Profil&nbsp;</span>
     <span class="hover-text" aria-hidden="true">&nbsp;Profil&nbsp;</span>
   </button>
@@ -20,33 +20,19 @@
     <span class="actual-text">&nbsp;Gruppen verwalten&nbsp;</span>
     <span class="hover-text" aria-hidden="true">&nbsp;Gruppen verwalten&nbsp;</span>
   </button>
+  <button data-text="Awesome" class="button btn-customized" (click)="isImpressOpen = !isImpressOpen">
+    <span class="actual-text">&nbsp;Impresum&nbsp;</span>
+    <span class="hover-text" aria-hidden="true">&nbsp;Impresum&nbsp;</span>
+  </button>
   <button data-text="Awesome" class="button btn-customized" (click)="onLogout()">
     <span class="actual-text">&nbsp;Ausloggen&nbsp;</span>
     <span class="hover-text" aria-hidden="true">&nbsp;Ausloggen&nbsp;</span>
   </button>
 </div>
-
-<!--<li class="item" (click)="isImpressOpen = !isImpressOpen">-->
-<!--  <i class="tim-icons icon-atom"></i>-->
-<!--</li>-->
-<!--<li class="item dropdown dropdown-toggle dropdown-toggle" dropdown data-toggle="dropdown" dropdownToggle-->
-<!--    id="dropdownMenuLink">-->
-<!--  <i class="tim-icons icon-single-02"></i>-->
-<!--  <div class=" dropdown-menu" *dropdownMenu aria-labelledby="dropdownMenuLink">-->
-<!--    <a class=" dropdown-item">-->
-<!--      Profil-->
-<!--    </a>-->
-<!--    <a class=" dropdown-item" href="#">-->
-<!--      Meine Einkäufe-->
-<!--    </a>-->
-<!--    <a class=" dropdown-item" href="#">-->
-<!--      Märkte-->
-<!--    </a>-->
-<!--    <a class=" dropdown-item" [routerLink]="['social-group']">-->
-<!--      Gruppen verwalten-->
-<!--    </a>-->
-<!--    <a class=" dropdown-item" (click)="onLogout()">-->
-<!--      Ausloggen-->
-<!--    </a>-->
-<!--  </div>-->
-<!--</li>-->
+<div *ngIf="isImpressOpen" style="height:400px; background-color: #000802;opacity: .5"></div>
+<div *ngIf="!isImpressOpen" class="impresum-mobile"  style="height:400px; background-color: #000802;opacity: .5">
+  <div>Hersteller Miguel Gutierrez</div>
+  <div>Wohnhaft in:</div>
+  <div>Straße: Im Rittersloch 12</div>
+  <div>Stadt: Schaafheim </div>
+</div>

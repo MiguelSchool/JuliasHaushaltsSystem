@@ -23,7 +23,8 @@ export class AuthService {
   constructor( private httpClient: HttpClient ) { }
 
   register( registerUser: RegisterUser ): Observable<TokenState> {
-      return this.httpClient.post<TokenState>( `${ this.baseUrl }/register`, registerUser, { withCredentials: true } )
+    console.log(registerUser)
+      return this.httpClient.post<TokenState>( `${ this.baseUrl }/register`, registerUser )
   }
 
   login( loginUser: LoginUser ): Observable<TokenState> {

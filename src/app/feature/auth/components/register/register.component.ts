@@ -40,6 +40,7 @@ export class RegisterComponent implements OnDestroy {
 
   onRegister(): void {
     const registerUser: RegisterUser = this.formGroup.value;
+    console.log(registerUser)
     this.authService.register( registerUser ).pipe( takeUntil( this.unsubscribe$ ) )
       .subscribe( ( registerStatus: TokenState ) => {
           this.loginStateCollectionService.clearCache();

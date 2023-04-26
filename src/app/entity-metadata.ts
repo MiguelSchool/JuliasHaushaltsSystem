@@ -4,7 +4,10 @@ const entityMetadata: EntityMetadataMap = {
   LoginState: {
     selectId: model => model.id
   },
-  ToastMessage: {}
+  ToastMessage: { },
+  Profile: {
+    selectId: model => model.id
+  }
 };
 
 const pluralNames = {  };

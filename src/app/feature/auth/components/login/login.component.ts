@@ -1,5 +1,5 @@
-import { Component }                            from '@angular/core';
-import { LoginStateCollectionService }          from '../../share/store/login-state-collection.service';
+import { Component, HostListener }     from '@angular/core';
+import { LoginStateCollectionService } from '../../share/store/login-state-collection.service';
 import { Router }                               from '@angular/router';
 import { FormBuilder, FormGroup, Validators }   from '@angular/forms';
 import { ToastMessageCollectionServiceService } from '../../../shared/service/toast-message-collection-service.service';
@@ -8,10 +8,10 @@ import { ToastMessage }                         from '../../../shared/model/Toas
 import { v4 as uuid }                           from 'uuid';
 import { LoginUser }                            from '../../share/model/LoginUser';
 import { AuthService }                          from '../../share/auth.service';
-import { map }                                 from 'rxjs/operators';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Observable, tap }                     from 'rxjs';
+import { BreakpointObserver }                   from '@angular/cdk/layout';
+import { Observable }                           from 'rxjs';
 import { LoginState }                           from '../../share/model/LoginState';
+
 
 @Component( {
   selector: 'app-login',
@@ -19,6 +19,14 @@ import { LoginState }                           from '../../share/model/LoginSta
   styleUrls: [ './login.component.scss' ]
 } )
 export class LoginComponent {
+
+  screenWidth: number = 0;
+  @HostListener('window:resize', ['$event'])
+  // @ts-ignore
+  getScreenSize(event?) {
+    this.screenWidth = window.innerWidth;
+    console.log(this.screenWidth);
+  }
 
   formGroup: FormGroup | undefined;
   toastMessage$: Observable<ToastMessage> | undefined;
@@ -43,7 +51,6 @@ export class LoginComponent {
     if(this.formGroup?.value) {
       const loginUser: LoginUser = this.formGroup.value;
       this.authService.login(loginUser).pipe().subscribe((loginState) => {
-        console.log(loginState)
         this.loginStage = {
           isLoggedIn: true,
           success: true,
@@ -52,16 +59,17 @@ export class LoginComponent {
           id: uuid().toString()
         }
         this.loginStateCollectionService.clearCache();
+        console.log(this.loginStage)
         this.loginStateCollectionService.addOneToCache(this.loginStage);
         if ( this.loginStage && this.loginStage.isLoggedIn ) {
-          document.body.offsetWidth < 800 ?
+          console.log(this.screenWidth )
+          this.screenWidth < 700 ?
           this.router.navigate(['/mobile-menue']) :
           this.router.navigate(['/home'])
         }
       })
       this.setNewToastMessage( { id: 'key',message: 'Login war erfolgreich!', status: true } );
       setTimeout( () => { this.toastService.clearCache(); }, 1000 );
-      console.log(this.loginStage)
     }
   }
 
@@ -75,5 +83,3 @@ export class LoginComponent {
     );
   }
 }
-// this.router.navigate(['/mobile-menue'])
-// this.router.navigate(['/home'])

@@ -1,10 +1,10 @@
-import { Component }                            from '@angular/core';
-import { CommonModule }                         from '@angular/common';
-import { BsDropdownModule }                     from 'ngx-bootstrap/dropdown';
-import { Observable }                           from 'rxjs';
-import { LoginState }                           from '../../../auth/share/model/LoginState';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule }      from '@angular/common';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { Observable, tap }  from 'rxjs';
+import { LoginState }       from '../../../auth/share/model/LoginState';
 import { ToastMessage }                         from '../../model/ToastMessage';
-import { Router }                               from '@angular/router';
+import { Router, RouterLink }                   from '@angular/router';
 import { ToastMessageCollectionServiceService } from '../../service/toast-message-collection-service.service';
 import { LoginStateCollectionService }          from '../../../auth/share/store/login-state-collection.service';
 import { BreakpointObserver, BreakpointState }  from '@angular/cdk/layout';
@@ -21,23 +21,21 @@ const initialState: LoginState = {
 @Component({
   selector: 'app-mobile-menue',
   standalone: true,
-    imports: [ CommonModule, BsDropdownModule ],
+  imports: [ CommonModule, BsDropdownModule, RouterLink ],
   templateUrl: './mobile-menue.component.html',
   styleUrls: ['./mobile-menue.component.scss']
 })
-export class MobileMenueComponent {
+export class MobileMenueComponent implements OnInit {
   isImpressOpen = false;
   loginState$: Observable<LoginState>;
   toastMessage$: Observable<ToastMessage> | undefined;
   isLoading$: Observable<boolean> | undefined;
-  showContainer$: Observable<boolean> | undefined;
 
 
   constructor(
     private router: Router,
     private toastMessageCollectionServiceService: ToastMessageCollectionServiceService,
-    private loginStateCollectionService: LoginStateCollectionService,
-    private breakpointObserver: BreakpointObserver
+    private loginStateCollectionService: LoginStateCollectionService
   ) {
     const storedLoginState: string | null = localStorage.getItem( 'loginState' );
     const loginState = storedLoginState ? { ...JSON.parse( storedLoginState ), id: uuid() } : initialState;
@@ -52,15 +50,19 @@ export class MobileMenueComponent {
     this.toastMessage$ = this.toastMessageCollectionServiceService.entities$.pipe(
       map( toastMessages => toastMessages[ 0 ] )
     );
-    this.showContainer$ = this.breakpointObserver.observe( [ '(min-width: 785px' ] ).pipe(
-      map( ( state: BreakpointState ) => state && state.matches )
-    );
   }
 
   onLogout(): void {
     this.loginStateCollectionService.clearCache();
     localStorage.clear();
     this.loginStateCollectionService.addOneToCache( initialState );
-    this.router.navigate( [ '/login' ] );
+    this.router.navigate( [ '/home' ] ).then(() => {
+      const id = uuid();
+      this.toastMessageCollectionServiceService.addOneToCache({ message: 'Logout war erfolgreich', id, status: true})
+    });
+
+    setTimeout(()=> {
+      this.toastMessageCollectionServiceService.clearCache();
+    },1000)
   }
 }
